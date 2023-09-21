@@ -1,46 +1,44 @@
 import { useState } from "react";
 
-function AddNewNote({ onAddNote }) {
-  const [title, setTtile] = useState("");
+function AddNewNote({ noteHandler }) {
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-
-    if (!title || !description) return null;
-
     const newNote = {
+      id: Date.now(),
       title,
       description,
-      id: Date.now(),
-      completed: false,
       createdAt: new Date().toISOString(),
+      completed: false,
     };
-    onAddNote(newNote);
-    setTtile("");
+    console.log(newNote);
+
+    noteHandler(newNote);
+    setTitle("");
     setDescription("");
   };
-
   return (
     <div className="add-new-note">
       <h2>Add New Note</h2>
-      <form className="note-form" onSubmit={handleSubmit}>
+      <form className="note-form" onSubmit={submitHandler}>
         <input
           value={title}
-          onChange={(e) => setTtile(e.target.value)}
-          type="text"
+          onChange={(e) => setTitle(e.target.value)}
           className="text-field"
-          placeholder="Note title"
+          type="text"
+          placeholder="Note Title ..."
         />
         <input
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          type="text"
           className="text-field"
-          placeholder="Note description"
+          type="text"
+          placeholder="Note description ..."
         />
-        <button type="submit" className="btn btn--primary">
-          Add New Note
+        <button className="btn btn--primary" type="submit">
+          Add Note
         </button>
       </form>
     </div>
