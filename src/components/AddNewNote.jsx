@@ -6,6 +6,7 @@ function AddNewNote({ noteHandler }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if ((!title, !description)) return null;
     const newNote = {
       id: Date.now(),
       title,
