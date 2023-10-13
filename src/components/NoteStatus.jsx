@@ -3,6 +3,8 @@ function NoteStatus({ notes }) {
   const completed = notes.filter((n) => n.completed).length;
   const open = allNotes - completed;
 
+  if (!allNotes) return <h2>No Notes are placed</h2>;
+
   return (
     <ul className="note-status">
       <li>

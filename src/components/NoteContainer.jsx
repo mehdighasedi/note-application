@@ -1,7 +1,22 @@
-function NoteContainer({ note, onDelete, onChecked }) {
+function NoteContainer({ note, onDelete, onChecked, sortBy }) {
+  let sortedNotes = note;
+
+  if (sortBy === "latest")
+    sortedNotes = [...note].sort(
+      (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+    );
+  if (sortBy === "earliest")
+    sortedNotes = [...note].sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+  if (sortBy === "completed")
+    sortedNotes = [...note].sort(
+      (a, b) => Number(a.completed) - Number(b.completed)
+    );
+
   return (
     <div>
-      {note.map((n) => (
+      {sortedNotes.map((n) => (
         <NoteList
           key={n.id}
           notes={n}

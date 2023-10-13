@@ -13,6 +13,10 @@
   border-bottom: 1px solid var(--text-400);
 }
 
+.note-header h1 { 
+  margin-right: 5rem;
+}
+
 .note-app {
   display: flex;
   justify-content: space-between;
@@ -37,6 +41,7 @@
   justify-content: space-between;
   color: var(--text-400);
   margin-bottom: 2rem;
+  transition: all 0.3s ease-in;
 }
 
 .note-status span {
